@@ -1,5 +1,7 @@
 "use client";
 
+// Only rendering error will caught.
+// This will also not caught any error in root layout.
 export default function Error({ error, reset }) {
   return (
     <main className="flex justify-center items-center flex-col gap-6">
