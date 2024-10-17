@@ -1,4 +1,10 @@
-import CabinCard from "../_components/CabinCard";
+import { Suspense } from "react";
+import CabinList from "../_components/CabinList";
+import Spinner from "../_components/Spinner";
+
+// export const revalidate = 0;
+// export const revalidate = 15;
+// export const revalidate = 3600;
 
 export const metadata = {
   title: "Cabins",
@@ -6,9 +12,6 @@ export const metadata = {
 };
 
 function Page() {
-  // CHANGE
-  const cabins = [];
-
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -18,18 +21,14 @@ function Page() {
         Cozy yet luxurious cabins, located right in the heart of the Italian
         Dolomites. Imagine waking up to beautiful mountain views, spending your
         days exploring the dark forests around, or just relaxing in your private
-        hot tub under the stars. Enjoy nature's beauty in your own little home
-        away from home. The perfect spot for a peaceful, calm vacation. Welcome
-        to paradise.
+        hot tub under the stars. Enjoy nature&apos;s beauty in your own little
+        home away from home. The perfect spot for a peaceful, calm vacation.
+        Welcome to paradise.
       </p>
 
-      {cabins.length > 0 && (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cabins.map((cabin) => (
-            <CabinCard cabin={cabin} key={cabin.id} />
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<Spinner />}>
+        <CabinList />
+      </Suspense>
     </div>
   );
 }
